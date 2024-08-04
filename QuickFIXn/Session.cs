@@ -1259,8 +1259,25 @@ namespace QuickFix
             logon.SetField(new Fields.EncryptMethod(0));
             logon.SetField(new Fields.HeartBtInt(state_.HeartBtInt));
 
-            if (this.SessionID.IsFIXT)
+            if (this.SessionID.IsFIXT) {
                 logon.SetField(new Fields.DefaultApplVerID(this.SenderDefaultApplVerID));
+
+                
+                // DefaultCtsmApplVerID
+                // Tag = 1408
+                // Value = 1.13
+                logon.SetField(new Fields.DefaultCtsmApplVerID("1.13"));
+                // var defaultCstmApplVerId = new RawData("1.13");
+                // defaultCstmApplVerId.Tag = 1408;
+                // logon.Set(defaultCstmApplVerId);
+
+                // // DefaultAppVerId
+                // // Tag = 1137
+                // // Value = 9
+                // var defaultAppVerId = new RawData("9");
+                // defaultAppVerId.Tag = 1137;
+                // logon.Set(defaultAppVerId);
+            }
             if (this.RefreshOnLogon)
                 Refresh();
             if (this.ResetOnLogon)
